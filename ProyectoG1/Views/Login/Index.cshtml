@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Login.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<div class="contenedor_general contenedor2-interno">
+    <div class="contenedor2>
+        <div class="contenedor2-interno">
+            <div class="overlay-panel overlay-left">
+                <h1>Hola, Amigo!</h1>
+                <p>Ingresa tus datos personales y comienza tu viaje con nosotros</p>
+                <a class="btn btn2" href="Registrar">Registrarse</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor-general2">
+        <form id="frm" class="overlay-panel overlay-right">
+            <h1 class="texto">Inicia Sesión</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social"><i class="fa fa-envelope"></i></a>
+            </div>
+            <input class="input" type="text" name="login_correo" placeholder="Usuario" required />
+            <input class="input" type="password" name="login_contrasenia" placeholder="Contraseña" required />
+            <a href="#" class="enlace">¿Olvidaste la contraseña?</a>
+            <input type="submit" class="btn" value="Ingresar" />
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    $(document).ready(
+        function () {
+            $("#frm").submit(function (e) {
+                e.preventDefault();
+                url = "@Url.Content("~/Login/Enter")";
+                parametros = $(this).serialize();
+
+
+                $.post(url, parametros, function (data) {
+                    if (data == "1") {
+                        document.location.href = "@Url.Content("~/Home/Index")";
+                    } else {
+                        alert(data);
+                    }
+                });
+            });
+        }
+    );
+
+    </script>
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="703c5e1f57a04650b59bfd8c7602cc2b" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="registro_calificacionesModel.estados" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="registro_calificacionesModel.materia" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="registro_calificacionesModel.notas" Width="1.5" PointX="8.25" PointY="3.5" />
+        <EntityTypeShape EntityType="registro_calificacionesModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="registro_calificacionesModel.tipousuario" Width="1.5" PointX="3.75" PointY="1" />
+        <EntityTypeShape EntityType="registro_calificacionesModel.usuarios" Width="1.5" PointX="6" PointY="2.875" />
+        <AssociationConnector Association="registro_calificacionesModel.FK__materia__idEstad__2D27B809" />
+        <AssociationConnector Association="registro_calificacionesModel.FK__usuarios__idEsta__29572725" />
+        <AssociationConnector Association="registro_calificacionesModel.FK__materia__idUsuar__2C3393D0" />
+        <AssociationConnector Association="registro_calificacionesModel.FK__notas__idMateria__30F848ED" />
+        <AssociationConnector Association="registro_calificacionesModel.FK__notas__idUsuario__300424B4" />
+        <AssociationConnector Association="registro_calificacionesModel.FK__usuarios__idTipo__286302EC" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="registro_calificacionesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="estados">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materia">
+          <Key>
+            <PropertyRef Name="idMateria" />
+          </Key>
+          <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nrc" Type="int" Nullable="false" />
+          <Property Name="nombreMateria" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notas">
+          <Key>
+            <PropertyRef Name="idNotas" />
+          </Key>
+          <Property Name="idNotas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idMateria" Type="int" Nullable="false" />
+          <Property Name="nota1" Type="float" Nullable="false" />
+          <Property Name="nota2" Type="float" Nullable="false" />
+          <Property Name="nota3" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tipousuario">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellidoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="claveUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cedulaUsuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="telefonoUsuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="correoUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fotoUsuario" Type="varchar(max)" />
+          <Property Name="idTipo" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__materia__idEstad__2D27B809">
+          <End Role="estados" Type="Self.estados" Multiplicity="1" />
+          <End Role="materia" Type="Self.materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="materia">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__materia__idUsuar__2C3393D0">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="materia" Type="Self.materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="materia">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notas__idMateria__30F848ED">
+          <End Role="materia" Type="Self.materia" Multiplicity="1" />
+          <End Role="notas" Type="Self.notas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="notas">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notas__idUsuario__300424B4">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="notas" Type="Self.notas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="notas">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuarios__idEsta__29572725">
+          <End Role="estados" Type="Self.estados" Multiplicity="1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuarios__idTipo__286302EC">
+          <End Role="tipousuario" Type="Self.tipousuario" Multiplicity="1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipousuario">
+              <PropertyRef Name="idTipo" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="idTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="registro_calificacionesModelStoreContainer">
+          <EntitySet Name="estados" EntityType="Self.estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="notas" EntityType="Self.notas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipousuario" EntityType="Self.tipousuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__materia__idEstad__2D27B809" Association="Self.FK__materia__idEstad__2D27B809">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="materia" EntitySet="materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__materia__idUsuar__2C3393D0" Association="Self.FK__materia__idUsuar__2C3393D0">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="materia" EntitySet="materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notas__idMateria__30F848ED" Association="Self.FK__notas__idMateria__30F848ED">
+            <End Role="materia" EntitySet="materia" />
+            <End Role="notas" EntitySet="notas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notas__idUsuario__300424B4" Association="Self.FK__notas__idUsuario__300424B4">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="notas" EntitySet="notas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuarios__idEsta__29572725" Association="Self.FK__usuarios__idEsta__29572725">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuarios__idTipo__286302EC" Association="Self.FK__usuarios__idTipo__286302EC">
+            <End Role="tipousuario" EntitySet="tipousuario" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="registro_calificacionesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="registro_calificacionesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="estados" EntityType="registro_calificacionesModel.estados" />
+          <EntitySet Name="materia" EntityType="registro_calificacionesModel.materia" />
+          <EntitySet Name="notas" EntityType="registro_calificacionesModel.notas" />
+          <EntitySet Name="sysdiagrams" EntityType="registro_calificacionesModel.sysdiagrams" />
+          <EntitySet Name="tipousuario" EntityType="registro_calificacionesModel.tipousuario" />
+          <EntitySet Name="usuarios" EntityType="registro_calificacionesModel.usuarios" />
+          <AssociationSet Name="FK__materia__idEstad__2D27B809" Association="registro_calificacionesModel.FK__materia__idEstad__2D27B809">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="materia" EntitySet="materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuarios__idEsta__29572725" Association="registro_calificacionesModel.FK__usuarios__idEsta__29572725">
+            <End Role="estados" EntitySet="estados" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__materia__idUsuar__2C3393D0" Association="registro_calificacionesModel.FK__materia__idUsuar__2C3393D0">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="materia" EntitySet="materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notas__idMateria__30F848ED" Association="registro_calificacionesModel.FK__notas__idMateria__30F848ED">
+            <End Role="materia" EntitySet="materia" />
+            <End Role="notas" EntitySet="notas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notas__idUsuario__300424B4" Association="registro_calificacionesModel.FK__notas__idUsuario__300424B4">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="notas" EntitySet="notas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuarios__idTipo__286302EC" Association="registro_calificacionesModel.FK__usuarios__idTipo__286302EC">
+            <End Role="tipousuario" EntitySet="tipousuario" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="estados">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="materia" Relationship="registro_calificacionesModel.FK__materia__idEstad__2D27B809" FromRole="estados" ToRole="materia" />
+          <NavigationProperty Name="usuarios" Relationship="registro_calificacionesModel.FK__usuarios__idEsta__29572725" FromRole="estados" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="materia">
+          <Key>
+            <PropertyRef Name="idMateria" />
+          </Key>
+          <Property Name="idMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nrc" Type="Int32" Nullable="false" />
+          <Property Name="nombreMateria" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="estados" Relationship="registro_calificacionesModel.FK__materia__idEstad__2D27B809" FromRole="materia" ToRole="estados" />
+          <NavigationProperty Name="usuarios" Relationship="registro_calificacionesModel.FK__materia__idUsuar__2C3393D0" FromRole="materia" ToRole="usuarios" />
+          <NavigationProperty Name="notas" Relationship="registro_calificacionesModel.FK__notas__idMateria__30F848ED" FromRole="materia" ToRole="notas" />
+        </EntityType>
+        <EntityType Name="notas">
+          <Key>
+            <PropertyRef Name="idNotas" />
+          </Key>
+          <Property Name="idNotas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idMateria" Type="Int32" Nullable="false" />
+          <Property Name="nota1" Type="Double" Nullable="false" />
+          <Property Name="nota2" Type="Double" Nullable="false" />
+          <Property Name="nota3" Type="Double" Nullable="false" />
+          <NavigationProperty Name="materia" Relationship="registro_calificacionesModel.FK__notas__idMateria__30F848ED" FromRole="notas" ToRole="materia" />
+          <NavigationProperty Name="usuarios" Relationship="registro_calificacionesModel.FK__notas__idUsuario__300424B4" FromRole="notas" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tipousuario">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuarios" Relationship="registro_calificacionesModel.FK__usuarios__idTipo__286302EC" FromRole="tipousuario" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="claveUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedulaUsuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoUsuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correoUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fotoUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idTipo" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="estados" Relationship="registro_calificacionesModel.FK__usuarios__idEsta__29572725" FromRole="usuarios" ToRole="estados" />
+          <NavigationProperty Name="materia" Relationship="registro_calificacionesModel.FK__materia__idUsuar__2C3393D0" FromRole="usuarios" ToRole="materia" />
+          <NavigationProperty Name="notas" Relationship="registro_calificacionesModel.FK__notas__idUsuario__300424B4" FromRole="usuarios" ToRole="notas" />
+          <NavigationProperty Name="tipousuario" Relationship="registro_calificacionesModel.FK__usuarios__idTipo__286302EC" FromRole="usuarios" ToRole="tipousuario" />
+        </EntityType>
+        <Association Name="FK__materia__idEstad__2D27B809">
+          <End Type="registro_calificacionesModel.estados" Role="estados" Multiplicity="1" />
+          <End Type="registro_calificacionesModel.materia" Role="materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="materia">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuarios__idEsta__29572725">
+          <End Type="registro_calificacionesModel.estados" Role="estados" Multiplicity="1" />
+          <End Type="registro_calificacionesModel.usuarios" Role="usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__materia__idUsuar__2C3393D0">
+          <End Type="registro_calificacionesModel.usuarios" Role="usuarios" Multiplicity="1" />
+          <End Type="registro_calificacionesModel.materia" Role="materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="materia">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notas__idMateria__30F848ED">
+          <End Type="registro_calificacionesModel.materia" Role="materia" Multiplicity="1" />
+          <End Type="registro_calificacionesModel.notas" Role="notas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="notas">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notas__idUsuario__300424B4">
+          <End Type="registro_calificacionesModel.usuarios" Role="usuarios" Multiplicity="1" />
+          <End Type="registro_calificacionesModel.notas" Role="notas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="notas">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuarios__idTipo__286302EC">
+          <End Type="registro_calificacionesModel.tipousuario" Role="tipousuario" Multiplicity="1" />
+          <End Type="registro_calificacionesModel.usuarios" Role="usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipousuario">
+              <PropertyRef Name="idTipo" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="idTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="registro_calificacionesModelStoreContainer" CdmEntityContainer="registro_calificacionesEntities">
+          <EntitySetMapping Name="estados">
+            <EntityTypeMapping TypeName="registro_calificacionesModel.estados">
+              <MappingFragment StoreEntitySet="estados">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materia">
+            <EntityTypeMapping TypeName="registro_calificacionesModel.materia">
+              <MappingFragment StoreEntitySet="materia">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombreMateria" ColumnName="nombreMateria" />
+                <ScalarProperty Name="nrc" ColumnName="nrc" />
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notas">
+            <EntityTypeMapping TypeName="registro_calificacionesModel.notas">
+              <MappingFragment StoreEntitySet="notas">
+                <ScalarProperty Name="nota3" ColumnName="nota3" />
+                <ScalarProperty Name="nota2" ColumnName="nota2" />
+                <ScalarProperty Name="nota1" ColumnName="nota1" />
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idNotas" ColumnName="idNotas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="registro_calificacionesModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipousuario">
+            <EntityTypeMapping TypeName="registro_calificacionesModel.tipousuario">
+              <MappingFragment StoreEntitySet="tipousuario">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="registro_calificacionesModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+                <ScalarProperty Name="fotoUsuario" ColumnName="fotoUsuario" />
+                <ScalarProperty Name="correoUsuario" ColumnName="correoUsuario" />
+                <ScalarProperty Name="telefonoUsuario" ColumnName="telefonoUsuario" />
+                <ScalarProperty Name="cedulaUsuario" ColumnName="cedulaUsuario" />
+                <ScalarProperty Name="claveUsuario" ColumnName="claveUsuario" />
+                <ScalarProperty Name="apellidoUsuario" ColumnName="apellidoUsuario" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
