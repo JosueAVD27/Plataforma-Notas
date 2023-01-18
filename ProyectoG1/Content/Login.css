@@ -364,3 +364,8 @@ form {
 .contenedor2-interno{
     margin-left: 70px !important;
 }
+
+.validacion{
+    font-size: 8px;
+    color: red;
+}

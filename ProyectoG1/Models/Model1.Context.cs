@@ -28,7 +28,6 @@ namespace ProyectoG1.Models
         public virtual DbSet<estados> estados { get; set; }
         public virtual DbSet<materia> materia { get; set; }
         public virtual DbSet<notas> notas { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tipousuario> tipousuario { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
     }

@@ -29,7 +29,7 @@ namespace ProyectoG1.Models
         public string cedulaUsuario { get; set; }
         public string telefonoUsuario { get; set; }
         public string correoUsuario { get; set; }
-        public string fotoUsuario { get; set; }
+        public byte[] fotoUsuario { get; set; }
         public int idTipo { get; set; }
         public int idEstado { get; set; }
     

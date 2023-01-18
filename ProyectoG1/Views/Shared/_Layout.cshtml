@@ -13,7 +13,12 @@
 
 </head>
 <body>
-
+    @{
+        var nombreuser = Session["nombre"];
+        var apellidouser = Session["apellido"];
+        var tipouser = Session["tipo"];
+        var iduser = Session["id"];
+    }
     <nav class="nav_cabezera">
         <ul class="contenedor_nav">
             <li class="lista_item lista_item_titulo">
@@ -21,8 +26,11 @@
             </li>
             <li class="lista_item item_navbar">
                 <a class="btn_usuario navbar-item" href="#">
-                    <img class="fotoUsuario_base" src="" />
-                    
+
+                    <img src="@Url.Action("Imagen", "HOME")" class="fotoUsuario_base" />
+
+
+                    @(nombreuser + " " + apellidouser)
                 </a>
             </li>
             <li class="lista_item item_navbar">
@@ -30,8 +38,14 @@
                     Salir <ion-icon name="log-out-outline"></ion-icon>
                 </a>
             </li>
+
+
         </ul>
     </nav>
+
+
+
+    <!-- Contenido -->
 
     <nav id="navbar">
         <ul class="navbar-items flexbox-col">
@@ -49,26 +63,63 @@
                     <span class="link-text">Inicio</span>
                 </a>
             </li>
+            @if (tipouser.Equals(1))
+            {
+                <span>vale :x</span>
+            }
+            else if (tipouser.Equals(2))
+            {
+                <span>No vale xd</span>
+            }
+            else if (tipouser.Equals(3))
+            {
+                <li class="navbar-item flexbox-left">
+                    <a class="navbar-item-inner flexbox-left" href="">
+                        <div class="navbar-item-inner-icon-wrapper flexbox">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                        </div>
+                        <span class="link-text">Usuarios</span>
+                    </a>
+                </li>
+
+                <li class="navbar-item flexbox-left">
+                    <a class="navbar-item-inner flexbox-left" href="">
+                        <div class="navbar-item-inner-icon-wrapper flexbox">
+                            <ion-icon name="newspaper-outline"></ion-icon>
+                        </div>
+                        <span class="link-text">Inscripciones</span>
+                    </a>
+                </li>
+
+
+                <li class="navbar-item flexbox-left">
+                    <a class="navbar-item-inner flexbox-left" href="">
+                        <div class="navbar-item-inner-icon-wrapper flexbox">
+                            <ion-icon name="duplicate-outline"></ion-icon>
+                        </div>
+                        <span class="link-text">Materias</span>
+                    </a>
+                </li>
+
+            }
 
             <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left" href="">
+                <a class="navbar-item-inner flexbox-left" href="#">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <ion-icon name="person-add-outline"></ion-icon>
+                        <ion-icon name="settings-outline"></ion-icon>
                     </div>
-                    <span class="link-text">Usuarios</span>
+                    <span class="link-text">Configuraciones</span>
                 </a>
             </li>
 
-            <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left" href="">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <ion-icon name="newspaper-outline"></ion-icon>
-                    </div>
-                    <span class="link-text">Inscripciones</span>
-                </a>
-            </li>
         </ul>
+
     </nav>
+
+    
+
+
+
 
 
     <div class="container body-content">
