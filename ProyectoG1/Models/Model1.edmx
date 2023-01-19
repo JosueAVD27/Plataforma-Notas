@@ -52,7 +52,7 @@
           <Property Name="cedulaUsuario" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="telefonoUsuario" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="correoUsuario" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fotoUsuario" Type="image" Nullable="false" />
+          <Property Name="fotoUsuario" Type="image" />
           <Property Name="idTipo" Type="int" Nullable="false" />
           <Property Name="idEstado" Type="int" Nullable="false" />
         </EntityType>
@@ -249,7 +249,7 @@
           <Property Name="cedulaUsuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="telefonoUsuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="correoUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fotoUsuario" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="fotoUsuario" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idTipo" Type="Int32" Nullable="false" />
           <Property Name="idEstado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="estados" Relationship="registro_calificacionesModel.FK__usuarios__idEsta__29572725" FromRole="usuarios" ToRole="estados" />

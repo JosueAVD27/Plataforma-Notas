@@ -1,0 +1,128 @@
+﻿@model ProyectoG1.Models.ViewModel.UsuarioViewModel
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FAVICON-->
+    <link rel="icon" type="image/png" href="~/Imagenes/FavIcon.png">
+    <!--ESTILOS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/base.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/usuario.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+    @{
+        var tipouser = Session["tipo"];
+    }
+    <!-- Contenido -->
+    @using (Html.BeginForm("Usuario", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <section id="contenedor">
+
+            <h3 class="text_usuario">
+                <ion-icon name="person-circle-outline" class="icono_usuario"></ion-icon> Usuario
+            </h3>
+            <div>
+                <div class="contenedor_interno">
+
+                    <div class="contenedor_interno_left contenedor_foto">
+                        <div class="foto_perfil">
+                            <div class="image-upload">
+                                <label for="file-input">
+                                    <img src="@Url.Action("Imagen", "Home", new { id = Session["id"] })" id="imagenPrevisualizacion" class="fotoUsuario" , alt="Click aquí para subir tu foto" title="Click aquí para subir tu foto" />
+                                </label>
+                                <input id="file-input" type="file" name="image" />
+
+                                <figcaption><p>Cambiar foto</p></figcaption>
+                            </div>
+                        </div>
+                        <div class="nombre_perfil">
+                            <h6>@Html.DisplayFor(d => d.nombreUsuario) @Html.DisplayFor(d => d.apellidoUsuario)</h6>
+
+                            @if (tipouser.Equals(1))
+                            {
+                                <p>Estudiante</p>
+                            }
+                            else if (tipouser.Equals(2))
+                            {
+                                <p>Docente</p>
+                            }
+                            else if (tipouser.Equals(3))
+                            {
+                                <p>Administrador</p>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="contenedor_interno_right">
+                        <h6>Datos personales</h6>
+
+                        <div class="contenedor_datos1">
+                            <div class="contenedor_left">
+                                @Html.HiddenFor(d => d.idUsuario)
+                                @Html.HiddenFor(d => d.claveUsuario)
+                                @Html.HiddenFor(d => d.idTipo)
+                                @Html.HiddenFor(d => d.idEstado)
+                                <div>
+                                    @Html.LabelFor(d => d.username)
+                                    @Html.TextBoxFor(d => d.username, "", new { @class = "input-text" })
+                                    @Html.ValidationMessageFor(d => d.username, null, new { @class = "red" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(d => d.nombreUsuario)
+                                    @Html.TextBoxFor(d => d.nombreUsuario, "", new { @class = "input-text" })
+                                    @Html.ValidationMessageFor(d => d.nombreUsuario, null, new { @class = "red" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(d => d.cedulaUsuario)
+                                    @Html.TextBoxFor(d => d.cedulaUsuario, "", new { @class = "input-text" })
+                                    @Html.ValidationMessageFor(d => d.cedulaUsuario, null, new { @class = "red" })
+                                </div>
+                            </div>
+                            <div class="contenedor_right">
+                                <div>
+                                    @Html.LabelFor(d => d.correoUsuario)
+                                    @Html.TextBoxFor(d => d.correoUsuario, "", new { @class = "input-text" })
+                                    @Html.ValidationMessageFor(d => d.correoUsuario, null, new { @class = "red" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(d => d.apellidoUsuario)
+                                    @Html.TextBoxFor(d => d.apellidoUsuario, "", new { @class = "input-text" })
+                                    @Html.ValidationMessageFor(d => d.apellidoUsuario, null, new { @class = "red" })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(d => d.telefonoUsuario)
+                                    @Html.TextBoxFor(d => d.telefonoUsuario, "", new { @class = "input-text" })
+                                    @Html.ValidationMessageFor(d => d.telefonoUsuario, null, new { @class = "red" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenedor_botones">
+                            <div class="contenedor_datos2">
+                                <input class="btn_actualizar" type="submit" value="Actualizar datos">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    }
+</body>
+</html>
+
+<script src="~/Scripts/usuario.js"></script>

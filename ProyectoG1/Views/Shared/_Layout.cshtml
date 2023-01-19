@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ProyectoG1.Models.ViewModel.UsuarioViewModel
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,12 +26,12 @@
                 <h4>PLATAFORMA</h4>
             </li>
             <li class="lista_item item_navbar">
-                <a class="btn_usuario navbar-item" href="#">
+                <a class="btn_usuario navbar-item" href="@Url.Action("Usuario", "Home", new { id = Session["id"] })">
 
-                    <img src="@Url.Action("Imagen", "Home", new { id=Session["id"] })" class="fotoUsuario_base" />
+                    <img src="@Url.Action("Imagen", "Home", new { id = Session["id"] })" class="fotoUsuario_base" />
 
-
-                    @(nombreuser + " " + apellidouser)
+                    @( nombreuser + " " + apellidouser )
+                  
                 </a>
             </li>
             <li class="lista_item item_navbar">
@@ -50,28 +51,20 @@
     <nav id="navbar">
         <ul class="navbar-items flexbox-col">
             <li class="navbar-logo flexbox-left">
-                <a class="navbar-item-inner flexbox" href="">
+                <a class="navbar-item-inner flexbox" href="@Url.Action("Index", "Home")">
                     <img class="dimencion_Logo" src="~/Imagenes/logoPagina.png" alt="Logo pagina">
                 </a>
                 <span class="link-text letras_logo">Desarrollo Web</span>
             </li>
             <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left" href="">
+                <a class="navbar-item-inner flexbox-left" href="@Url.Action("Index", "Home")">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <ion-icon name="home-outline"></ion-icon>
                     </div>
                     <span class="link-text">Inicio</span>
                 </a>
             </li>
-            @if (tipouser.Equals(1))
-            {
-                
-            }
-            else if (tipouser.Equals(2))
-            {
-                
-            }
-            else if (tipouser.Equals(3))
+            @if (tipouser.Equals(3))
             {
                 <li class="navbar-item flexbox-left">
                     <a class="navbar-item-inner flexbox-left" href="">
@@ -81,6 +74,8 @@
                         <span class="link-text">Usuarios</span>
                     </a>
                 </li>
+
+
 
                 <li class="navbar-item flexbox-left">
                     <a class="navbar-item-inner flexbox-left" href="">
@@ -101,22 +96,36 @@
                     </a>
                 </li>
 
+
+                <li class="navbar-item flexbox-left">
+                    <a class="navbar-item-inner flexbox-left" href="#">
+                        <div class="navbar-item-inner-icon-wrapper flexbox">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </div>
+                        <span class="link-text">Configuraciones</span>
+                    </a>
+                </li>
+
+            }
+            else
+            {
+                <li class="navbar-item flexbox-left">
+                    <a class="navbar-item-inner flexbox-left" href="#">
+                        <div class="navbar-item-inner-icon-wrapper flexbox">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </div>
+                        <span class="link-text">Configuraciones</span>
+                    </a>
+                </li>
             }
 
-            <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left" href="#">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <ion-icon name="settings-outline"></ion-icon>
-                    </div>
-                    <span class="link-text">Configuraciones</span>
-                </a>
-            </li>
+
 
         </ul>
 
     </nav>
 
-    
+
 
 
 

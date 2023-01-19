@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using ProyectoG1.Models;
+using ProyectoG1.Models.ViewModel;
 
 namespace ProyectoG1.Controllers
 {
@@ -36,10 +37,15 @@ namespace ProyectoG1.Controllers
                         usuarios oUser = lst.First();
                         Session["User"] = oUser;
                         Session["id"] = oUser.idUsuario;
+                        Session["username"] = oUser.username;
                         Session["nombre"] = oUser.nombreUsuario;
                         Session["apellido"] = oUser.apellidoUsuario;
-                        Session["tipo"] = oUser.idTipo;
+                        Session["cedula"] = oUser.cedulaUsuario;
+                        Session["telefono"] = oUser.telefonoUsuario;
+                        Session["correo"] = oUser.correoUsuario;
                         Session["foto"] = oUser.fotoUsuario;
+                        Session["tipo"] = oUser.idTipo;
+                        Session["estado"] = oUser.idEstado;
                         return Content("1");
                     }
                     else
@@ -55,17 +61,13 @@ namespace ProyectoG1.Controllers
             }
         }
 
-
-
-
-
         public ActionResult Registrar()
         {
 
             return View();
         }
         [HttpPost]
-        public ActionResult Registrar(Usuario usuariomodel)
+        public ActionResult Registrar(UsuarioViewModel usuariomodel)
         {
             try
             {
@@ -123,8 +125,6 @@ namespace ProyectoG1.Controllers
 
             return File(memoryStream, "image/jpg");
         }
-
-
 
         public ActionResult LogOut()
         {
