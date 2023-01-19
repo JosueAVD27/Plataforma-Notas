@@ -27,7 +27,7 @@
             <li class="lista_item item_navbar">
                 <a class="btn_usuario navbar-item" href="#">
 
-                    <img src="@Url.Action("Imagen", "HOME")" class="fotoUsuario_base" />
+                    <img src="@Url.Action("Imagen", "Home", new { id=Session["id"] })" class="fotoUsuario_base" />
 
 
                     @(nombreuser + " " + apellidouser)
@@ -65,11 +65,11 @@
             </li>
             @if (tipouser.Equals(1))
             {
-                <p>vale :x</p>
+                
             }
             else if (tipouser.Equals(2))
             {
-                <p>No vale xd</p>
+                
             }
             else if (tipouser.Equals(3))
             {
