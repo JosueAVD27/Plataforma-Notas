@@ -1,6 +1,6 @@
-﻿@model ProyectoG1.Models.ViewModel.UsuarioViewModel
+﻿@model List<ProyectoG1.Models.ViewModel.ListaPermisosViewModel>
 @{
-    ViewBag.Title = "Inicio";
+    ViewBag.Title = "Configuraciones";
 }
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="~/Imagenes/FavIcon.png">
     <!--ESTILOS-->
     <link rel="stylesheet" type="text/css" href="~/Content/base.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/inicio.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/configuraciones.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
@@ -28,31 +28,27 @@
         var apellidouser = Session["apellido"];
         var tipouser = Session["tipo"];
         var iduser = Session["id"];
+
+
     }
     <!-- Contenido -->
     <section id="contenedor">
-        <h3 class="text_usuario">Inicio</h3>
+        <h3 class="text_usuario">Configuraciones</h3>
         <div>
             <div class="interno">
-                @if (tipouser.Equals(1))
+                @if (tipouser.Equals(3))
                 {
-                    <p>Estudiante</p>
 
-
+                    <div align="center" class="contenedor_btn_agregar">
+                        <a class="btn_format btn_agregar" href="@Url.Action("Permisos", "Admin")">Permisos</a>
+                        <a class="btn_format btn_agregar" href="@Url.Action("Estados", "Admin")">Estados</a>
+                    </div>
 
                 }
-                else if (tipouser.Equals(2))
-                {
-                    <p>Docente</p>
-
-
-
-                }
-                else if (tipouser.Equals(3))
+                else
                 {
                     <div>
-                        <h1>Bienvenido!</h1>
-                        <h2>ERES ADMINISTRADOR!</h2>
+                        <h1>No hay configuraciones!</h1>
                     </div>
                 }
             </div>
@@ -60,3 +56,9 @@
     </section>
 </body>
 </html>
+
+<script src="~/Scripts/configuraciones.js"></script>
+
+<!--Ion Icons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

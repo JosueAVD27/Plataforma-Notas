@@ -138,6 +138,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AgregarController.cs" />
+    <Compile Include="Controllers\EditarController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
@@ -174,6 +177,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\ListaUsuarioViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListaPermisosViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListaEstadoViewModel.cs" />
+    <Compile Include="Models\ViewModel\EstadoViewModel.cs" />
+    <Compile Include="Models\ViewModel\MateriasViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListaMateriasViewModel.cs" />
+    <Compile Include="Models\ViewModel\PermisosViewModel.cs" />
     <Compile Include="Models\ViewModel\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -187,6 +196,7 @@
     <Content Include="Content\inicio.css" />
     <Content Include="Content\permisos.css" />
     <Content Include="Content\adduser.css" />
+    <Content Include="Content\configuraciones.css" />
     <Content Include="Content\usuario.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -215,6 +225,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\configuraciones.js" />
     <Content Include="Scripts\usuario.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -242,6 +253,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Login\Registrar.cshtml" />
+    <Content Include="Views\Admin\Configuraciones.cshtml" />
+    <Content Include="Views\Admin\Permisos.cshtml" />
+    <Content Include="Views\Admin\Estados.cshtml" />
+    <Content Include="Views\Admin\Materias.cshtml" />
+    <Content Include="Views\Admin\Usuarios.cshtml" />
+    <Content Include="Views\Admin\Inscripciones.cshtml" />
+    <Content Include="Views\Agregar\Permiso.cshtml" />
+    <Content Include="Views\Editar\Permiso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,94 @@
+﻿@model List<ProyectoG1.Models.ViewModel.ListaUsuarioViewModel>
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FAVICON-->
+    <link rel="icon" type="image/png" href="~/Imagenes/FavIcon.png">
+    <!--ESTILOS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/base.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/configuraciones.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+    @{
+        var nombreuser = Session["nombre"];
+        var apellidouser = Session["apellido"];
+        var tipouser = Session["tipo"];
+        var iduser = Session["id"];
+
+
+    }
+    <!-- Contenido -->
+    <section id="contenedor">
+
+        <h3 class="text_usuario">Usuarios</h3>
+
+        <div>
+            <div>
+                <table>
+                    <h6 class="subtitulo" align="center">Todos los Usuarios</h6>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">USUARIO</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">CEDULA</th>
+                            <th scope="col">TELEFONO</th>
+                            <th scope="col">CORREO</th>
+                            <th scope="col">TIPO</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var oElemento in Model)
+                        {
+                            <tr>
+                                <td>@oElemento.idUsuario</td>
+                                <td>@oElemento.username</td>
+                                <td>@oElemento.nombreUsuario @oElemento.apellidoUsuario</td>
+                                <td>@oElemento.cedulaUsuario</td>
+                                <td>@oElemento.telefonoUsuario</td>
+                                <td>@oElemento.correoUsuario</td>
+                                <td>@oElemento.idTipo</td>
+                                <td>@oElemento.idEstado</td>
+                                <td>
+                                    <a class="btn btn_editar" href="@Url.Action("Editar", "Admin", new { id = @oElemento.idUsuario })">Editar</a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Editar", "Admin", new { id = @oElemento.idUsuario })">
+                                        <button type="button" class="btn_eliminar" id="btn_desactivar_materia" onclick="return ConfirmDeleteMateria()">Cambiar</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div align="center" class="contenedor_btn_agregar">
+                    <a class="btn_format btn_agregar" href="insertarPermiso.php">Agregar usuario</a>
+                </div>
+            </div>
+    </section>
+</body>
+</html>
+
+<script src="~/Scripts/configuraciones.js"></script>
+
+<!--Ion Icons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
