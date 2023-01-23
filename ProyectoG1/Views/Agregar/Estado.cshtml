@@ -1,6 +1,6 @@
-﻿@model ProyectoG1.Models.ViewModel.PermisosViewModel
+﻿@model ProyectoG1.Models.ViewModel.EstadoViewModel
 @{
-    ViewBag.Title = "Agregar Permiso";
+    ViewBag.Title = "Agregar Estado";
 }
 
 <!DOCTYPE html>
@@ -29,16 +29,15 @@
         var tipouser = Session["tipo"];
         var iduser = Session["id"];
 
-
     }
 
     <!-- Contenido -->
     <section id="contenedor">
 
-        <h3 class="text_usuario">Agregar nuevo permiso</h3>
+        <h3 class="text_usuario">Agregar nuevo estado</h3>
 
         <div class="contenedor">
-            @using (Html.BeginForm("Permiso", "Agregar", FormMethod.Post))
+            @using (Html.BeginForm("Estado", "Agregar", FormMethod.Post))
             {
                 <form>
 
@@ -46,15 +45,15 @@
                         <div class="contenedor_interior">
 
                             <div class="contenedor_interior_right">
-                                @Html.LabelFor(d => d.tipo)
-                                @Html.TextBoxFor(d => d.tipo, "", new { @class = "input-text", @placeholder = "Ingrese el nuevo permiso" })
-                                @Html.ValidationMessageFor(d => d.tipo, null, new { @class = "validacion" })
+                                @Html.LabelFor(d => d.estado)
+                                @Html.TextBoxFor(d => d.estado, "", new { @class = "input-text", @placeholder = "Ingrese el nuevo permiso" })
+                                @Html.ValidationMessageFor(d => d.estado, null, new { @class = "validacion" })
                             </div>
                         </div>
                     </div>
                     <div class="contenedor_botones">
                         <button type="submit" class="btn_format btn_enviar contenedor_interior_left" onclick="return ConfirmPerm()">Guardar</button>
-                        <a class="btn_format btn_cancelar contenedor_interior_right" href="@Url.Action("Permisos", "Admin")">Cancelar</a>
+                        <a class="btn_format btn_cancelar contenedor_interior_right" href="@Url.Action("Estados", "Admin")">Cancelar</a>
                     </div>
                 </form>
             }

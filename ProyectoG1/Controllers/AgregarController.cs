@@ -51,5 +51,78 @@ namespace ProyectoG1.Controllers
         }
 
 
+        public ActionResult Estado()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Estado(EstadoViewModel estadoModel)
+        {
+            try
+            {
+                //Validar los datos Annotations
+                if (ModelState.IsValid)
+                {
+                    //Si todo es valido vamos a guaradar todos los datos en la base
+                    using (registro_calificacionesEntities db = new registro_calificacionesEntities())
+                    {
+                        var oEstado = new estados();
+                        oEstado.idEstado = estadoModel.idEstado;
+                        oEstado.estado = estadoModel.estado;
+
+
+                        db.estados.Add(oEstado);
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Admin/Estados");
+                }
+                return View(estadoModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public ActionResult Materia()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Materia(MateriasViewModel materiaModel)
+        {
+            try
+            {
+                //Validar los datos Annotations
+                if (ModelState.IsValid)
+                {
+                    //Si todo es valido vamos a guaradar todos los datos en la base
+                    using (registro_calificacionesEntities db = new registro_calificacionesEntities())
+                    {
+                        var num = 1;
+
+                        var oMateria = new materia();
+                        oMateria.idMateria = materiaModel.idMateria;
+                        oMateria.nrc = materiaModel.nrc;
+                        oMateria.nombreMateria = materiaModel.nombreMateria;
+                        oMateria.idUsuario = materiaModel.idUsuario;
+                        oMateria.idEstado = num;
+
+                        db.materia.Add(oMateria);
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Admin/Materias");
+                }
+                return View(materiaModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

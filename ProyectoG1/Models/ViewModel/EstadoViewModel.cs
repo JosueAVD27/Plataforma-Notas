@@ -12,6 +12,8 @@ namespace ProyectoG1.Models.ViewModel
     {
         public int idEstado { get; set; }
 
+        [Required]
+        [Display(Name = "ESTADO")]
         public string estado { get; set; }
 
     }

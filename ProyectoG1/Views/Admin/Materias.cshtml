@@ -61,11 +61,11 @@
                                 <td>@oElemento.idUsuario</td>
                                 <td>@oElemento.idEstado</td>
                                 <td>
-                                    <a class="btn btn_editar" href="@Url.Action("Editar", "Admin", new { id = @oElemento.idMateria })">Editar</a>
+                                    <a class="btn btn_editar" href="@Url.Action("Materia", "Editar", new { id = @oElemento.idMateria })">Editar</a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Editar", "Admin", new { id = @oElemento.idMateria })">
-                                        <button type="button" class="btn_eliminar" onclick="return ConfirmDeleteMateria()">Cambiar Estado</button>
+                                    <a href="@Url.Action("EliminarMateria", "Admin", new { id = @oElemento.idMateria })">
+                                        <button type="button" class="btn_eliminar" onclick="return ConfirmDeleteMateria()">Eliminar Materia</button>
                                     </a>
                                 </td>
                             </tr>
@@ -74,7 +74,7 @@
                 </table>
 
                 <div align="center" class="contenedor_btn_agregar">
-                    <a class="btn_format btn_agregar" href="insertarPermiso.php">Agregar materia</a>
+                    <a class="btn_format btn_agregar" href="@Url.Action("Materia", "Agregar")">Agregar materia</a>
                 </div>
             </div>
     </section>

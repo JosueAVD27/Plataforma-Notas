@@ -1,6 +1,6 @@
 ﻿@model ProyectoG1.Models.ViewModel.PermisosViewModel
 @{
-    ViewBag.Title = "Inscripciones";
+    ViewBag.Title = "Actualizar Permiso";
 }
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
     <!-- Contenido -->
     <section id="contenedor">
 
-        <h3 class="text_usuario">Permisos</h3>
+        <h3 class="text_usuario">Actualizar Permiso</h3>
         
             <div class="contenedor">
                 <div class="sub_contenedor">
@@ -56,16 +56,13 @@
                             </div>
                             <div class="contenedor_botones">
                                 <button type="submit" class="btn_format btn_enviar contenedor_interior_left" onclick="return ConfirmPermiso()">Actualizar</button>
-                                <a class="btn_format btn_cancelar contenedor_interior_right" href="@Url.Action("Permisos", "Admin")">Cancelar</a>
+                                <a class="btn_format btn_cancelar contenedor_interior_right" href="@Url.Action("Estados", "Admin")">Cancelar</a>
                             </div>
                         </form>
                     }
                     </div>
-                
             </div>
-        
         </section>
-
 </body>
 </html>
 

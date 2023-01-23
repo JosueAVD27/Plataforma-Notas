@@ -119,5 +119,31 @@ namespace ProyectoG1.Controllers
             }
             return Redirect("~/Admin/Permisos");
         }
+
+        // DELETE: Estado
+        [HttpGet]
+        public ActionResult EliminarEstado(int id)
+        {
+            using (registro_calificacionesEntities db = new registro_calificacionesEntities())
+            {
+                var oEstado = db.estados.Find(id);
+                db.estados.Remove(oEstado);
+                db.SaveChanges();
+            }
+            return Redirect("~/Admin/Estados");
+        }
+
+        // DELETE: Estado
+        [HttpGet]
+        public ActionResult EliminarMateria(int id)
+        {
+            using (registro_calificacionesEntities db = new registro_calificacionesEntities())
+            {
+                var oMateria = db.materia.Find(id);
+                db.materia.Remove(oMateria);
+                db.SaveChanges();
+            }
+            return Redirect("~/Admin/Materias");
+        }
     }
 }

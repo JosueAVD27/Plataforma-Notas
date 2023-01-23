@@ -261,6 +261,11 @@
     <Content Include="Views\Admin\Inscripciones.cshtml" />
     <Content Include="Views\Agregar\Permiso.cshtml" />
     <Content Include="Views\Editar\Permiso.cshtml" />
+    <Content Include="Views\Agregar\Estado.cshtml" />
+    <Content Include="Views\Editar\Estado.cshtml" />
+    <Content Include="Views\Agregar\Materia.cshtml" />
+    <Content Include="Views\Editar\Usuario.cshtml" />
+    <Content Include="Views\Editar\Materia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

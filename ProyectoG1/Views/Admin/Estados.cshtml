@@ -55,19 +55,19 @@
                                 <td>@oElemento.idEstado</td>
                                 <td>@oElemento.estado</td>
                                 <td>
-                                    <a class="btn btn_editar" href="@Url.Action("Editar", "Admin", new { id = @oElemento.idEstado })">Editar</a>
+                                    <a class="btn btn_editar" href="@Url.Action("Estado", "Editar", new { id = @oElemento.idEstado })">Editar</a>
                                 </td>
                                 <td>
-                                    @if (oElemento.idEstado == 1 || oElemento.idEstado == 2 || oElemento.idEstado == 3)
+                                    @if (oElemento.idEstado == 1 || oElemento.idEstado == 2)
                                     {
-                                        <a href="@Url.Action("Editar", "Admin", new { id = @oElemento.idEstado })">
+                                        <a href="@Url.Action("EliminarEstado", "Admin", new { id = @oElemento.idEstado })">
                                             <button type="button" class="btn_eliminar" onclick="return ConfirmDeleteEstadoNegado(event)">Eliminar</button>
                                         </a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("Editar", "Admin", new { id = @oElemento.idEstado })">
-                                            <button type="button" class="btn_eliminar" onclick="return ConfirmDeleteTipo()">Eliminar</button>
+                                        <a href="@Url.Action("EliminarEstado", "Admin", new { id = @oElemento.idEstado })">
+                                            <button type="button" class="btn_eliminar" onclick="return ConfirmDeleteEstado()">Eliminar</button>
                                         </a>
                                     }
                                 </td>
@@ -77,7 +77,7 @@
                 </table>
 
                 <div align="center" class="contenedor_btn_agregar">
-                    <a class="btn_format btn_agregar" href="insertarPermiso.php">Agregar estado</a>
+                    <a class="btn_format btn_agregar" href="@Url.Action("Estado", "Agregar")">Agregar estado</a>
                 </div>
             </div>
     </section>
